@@ -1,6 +1,14 @@
 # Tugas 2: Pengenalan Aplikasi Django dan Models View Template (MVT) pada Django
 
-Instansi Heroku: https://hanstm-pbp-tugas2.herokuapp.com/
+[![Status deployment](https://img.shields.io/github/workflow/status/HansTM/pbp-tugas2/Deployment?logo=github-actions&logoColor=white)](https://github.com/HansTM/pbp-tugas2/actions/workflows/deployment.yml)
+[![Aplikasi Heroku](https://img.shields.io/badge/heroku-hanstm--pbp--tugas2-blue?logo=heroku&logoColor=white)](https://hanstm-pbp-tugas2.herokuapp.com/)
+[![Tugas 2](https://img.shields.io/badge/assignment-Tugas%202-blue)](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-2)
+
+Selamat datang! Repositori ini digunakan untuk [Tugas 2](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-2) dalam mata kuliah Pemrograman Berbasis Platform. 
+
+Aplikasi Heroku: https://hanstm-pbp-tugas2.herokuapp.com/
+
+## Pertanyaan
 
 1. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara `urls.py`, `views.py`, `models.py`, dan berkas html.
 
@@ -20,7 +28,7 @@ Kita tetap dapat membuat aplikasi Django tanpa menggunakan *virtual enviroment*,
 - Buat file `views.py` dan tambah fungsi untuk menjawab (*response*) sebuah permintaan (*request*). Lengkapi juga sehingga dapat memberikan data/`context` sesuai dengan data yang dimiliki.
 - Ubah templat di `wishlist.html` agar dapat menunjukkan data yang telah diberikan dari `context`.
 - Buat file `urls.py` di dalam folder aplikasi dan tambah fungsi dari `views.py` sebagai jawaban pada halaman indeks (`/`).
-- Tambah `urls.py` sebelumnya ke dalam file `urls.py` di dalam folder proyek (`project_django`)
-- Buat aplikasi baru di Heroku, dan dapatkan API key dan nama aplikasinya di sana
+- Tambah `urls.py` sebelumnya ke dalam file `urls.py` di dalam folder proyek (`project_django`).
+- Buat aplikasi baru di Heroku, dan dapatkan API key dan nama aplikasinya di sana.
 - Tambah variabel-variabel tersebut (`HEROKU_API_KEY` dan `HEROKU_APP_NAME`) di `Repository secrets` pada repository GitHub yang dimiliki.
 - *Add*, *commit*, dan *push* perubahan yang ada. GitHub Actions akan men-*deploy* aplikasi ke Heroku. 
