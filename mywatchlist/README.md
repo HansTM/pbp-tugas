@@ -29,15 +29,37 @@ Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/mywatchlist
     - [x] http://localhost:8000/mywatchlist/json untuk mengakses `mywatchlist` dalam format JSON
 - [x] Melakukan _deployment_ ke Heroku terhadap aplikasi yang sudah kamu buat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
 - [ ] Membuat sebuah `README.md` yang berisi tautan menuju aplikasi Heroku yang sudah kamu _deploy_ serta jawaban dari beberapa pertanyaan berikut:
-- [ ] Mengakses tiga URL di poin 6 menggunakan Postman, menangkap _screenshot_, dan menambahkannya ke dalam `README.md`
-- [ ] Menambahkan _unit test_ pada `tests.py` untuk menguji bahwa tiga URL di poin 6 dapat mengembalikan respon `HTTP 200 OK`
+- [x] Mengakses tiga URL di poin 6 menggunakan Postman, menangkap _screenshot_, dan menambahkannya ke dalam `README.md`
+- [x] Menambahkan _unit test_ pada `tests.py` untuk menguji bahwa tiga URL di poin 6 dapat mengembalikan respon `HTTP 200 OK`
 
 ### Bonus
 
 - [x] Jika jumlah film yang sudah ditonton lebih banyak atau sama dengan jumlah film yang belum ditonton, tampilkan pesan "Selamat, kamu sudah banyak menonton!" dalam bentuk HTML
 - [x] Jika jumlah film yang belum ditonton lebih banyak dari jumlah film yang sudah ditonton, tampilkan pesan "Wah, kamu masih sedikit menonton!" dalam bentuk HTML
 
-## Pertanyaan
+## Jawaban
+
+### Postman
+
+<details><summary>HTML</summary>
+
+![Percobaan HTML di Postman.](../docs/tugas-3/postman-html.png)
+
+</details>
+
+<details><summary>JSON</summary>
+
+![Percobaan JSON di Postman.](../docs/tugas-3/postman-json.png)
+
+</details>
+
+<details><summary>XML</summary>
+
+![Percobaan XML di Postman.](../docs/tugas-3/postman-xml.png)
+
+</details>
+
+### Pertanyaan
 
 1. Jelaskan perbedaan antara JSON, XML, dan HTML!
 
