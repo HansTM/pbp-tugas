@@ -7,13 +7,16 @@
   <p><b>Name:</b> {{ name }}</p>
   <p><b>Student ID:</b> {{ id }}</p> -->
 
-  <p>
-    {% if distinction %}
-    Selamat, kamu sudah banyak menonton!
-    {% else %}
-    Wah, kamu masih sedikit menonton!
-    {% endif %}
-  </p>
+  {% if not singular %}
+    <p>
+      {% if distinction %}
+      Selamat, kamu sudah banyak menonton!
+      {% else %}
+      Wah, kamu masih sedikit menonton!
+      {% endif %}
+    </p>
+  {% endif %}
+
   <table>
     <tr>
       <th>Watched</th>
