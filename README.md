@@ -1,7 +1,7 @@
 # Hans TM @ Tugas PBP
 
 [![Status deployment](https://img.shields.io/github/workflow/status/HansTM/pbp-tugas/Deployment?logo=github-actions&logoColor=white)](https://github.com/HansTM/pbp-tugas/actions/workflows/deployment.yml)
-[![Aplikasi Heroku](https://img.shields.io/badge/heroku-hanstm--pbp--tugas-blue?logo=heroku&logoColor=white)](https://hanstm-pbp.herokuapp.com/)
+[![Aplikasi Heroku](https://img.shields.io/badge/heroku-hanstm--pbp--tugas-blue?logo=heroku&logoColor=white)](https://hanstm-pbp-tugas.herokuapp.com/)
 [![Tugas 2-3](https://img.shields.io/badge/assignment-Tugas%202--3-blue)](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-2)
 
 Selamat datang! Repositori ini digunakan untuk tugas [Tugas](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-2) dalam mata kuliah Pemrograman Berbasis Platform. 
@@ -14,9 +14,9 @@ Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/
   - Soal: [tugas/tugas-2](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-2)
   - Kode sumber: [katalog/](katalog/)
   - README.md: [katalog/README.md](katalog/README.md])
-  - Aplikasi Heroku: https://hanstm-pbp.herokuapp.com/katalog
+  - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/katalog
 - Tugas 3: Pengimplementasian Data Delivery Menggunakan Django
   - Soal: [tugas/tugas-3](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-3)
   - Kode sumber: [mywatchlist/](mywatchlist/)
   - README.md: [mywatchlist/README.md](mywatchlist/README.md])
-  - Aplikasi Heroku: https://hanstm-pbp.herokuapp.com/mywatchlist
+  - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/mywatchlist
