@@ -1,7 +1,7 @@
 # Tugas 2: Pengenalan Aplikasi Django dan Models View Template (MVT) pada Django
 
 [![Status deployment](https://img.shields.io/github/workflow/status/HansTM/pbp-tugas2/Deployment?logo=github-actions&logoColor=white)](https://github.com/HansTM/pbp-tugas2/actions/workflows/deployment.yml)
-[![Aplikasi Heroku](https://img.shields.io/badge/heroku-hanstm--pbp--tugas-blue?logo=heroku&logoColor=white)](https://hanstm-pbp-tugas.herokuapp.com/)
+[![Aplikasi Heroku](https://img.shields.io/badge/heroku-hanstm--pbp--tugas-blue?logo=heroku&logoColor=white)](https://hanstm-pbp-tugas.herokuapp.com/katalog)
 [![Tugas 2](https://img.shields.io/badge/assignment-Tugas%202-blue)](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-2)
 
 Selamat datang! Repositori ini digunakan untuk [Tugas 2](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-2) dalam mata kuliah Pemrograman Berbasis Platform. 

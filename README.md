@@ -13,10 +13,10 @@ Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/
 - Tugas 2: Pengenalan Aplikasi Django dan Models View Template (MVT) pada Django
   - Soal: [tugas/tugas-2](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-2)
   - Kode sumber: [katalog/](katalog/)
-  - README.md: [katalog/README.md](katalog/README.md])
+  - README.md: [katalog/README.md](katalog/README.md)
   - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/katalog
 - Tugas 3: Pengimplementasian Data Delivery Menggunakan Django
   - Soal: [tugas/tugas-3](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-3)
   - Kode sumber: [mywatchlist/](mywatchlist/)
-  - README.md: [mywatchlist/README.md](mywatchlist/README.md])
+  - README.md: [mywatchlist/README.md](mywatchlist/README.md)
   - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/mywatchlist
