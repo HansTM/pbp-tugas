@@ -75,11 +75,11 @@ Daftar tingkat pertama adalah URL yang ditugaskan wajib. Yang lain dibuat sebaga
 
 1. Jelaskan perbedaan antara JSON, XML, dan HTML!
 
-HTML adalah sebuah bahasa *markup* (*markup language*) untuk halaman-halaman yang biasa ditunjukkan dalam sebuah peramban web (*web browser*). HTML dapat didukung dengan JS dan CSS untuk menambah fungsi dan mengubah gaya halaman HTML yang ada.
+HTML adalah sebuah bahasa *markup* (*markup language*) untuk halaman-halaman yang biasa ditunjukkan dalam sebuah peramban web (*web browser*). HTML dapat didukung dengan JS dan CSS untuk menambah fungsi dan mengubah gaya halaman HTML yang ada. Dalam *data delivery*, HTML berfokus pada penyajian data, bukan datanya sendiri.
 
-JSON adalah sebuah format data yang umum digunakan. JSON diturunkan dari JavaScript, namun sering digunakan dalam bahasa pemogramman yang lain.
+XML adalah sebuah bahasa *markup* sekaligus sebagai sebuah format data. Sintaksisnya serupa seperti HTML, namun XML berfokus pada dalam (penyimpanan) datanya sendiri.
 
-XML adalah sebuah bahasa *markup* sekaligus sebagai sebuah format data. Bentuknya serupa seperti HTML, namun difokuskan dalam penyimpanan data.
+JSON adalah sebuah format data yang umum digunakan dalam berbagai kebutuhan. JSON diturunkan dari JavaScript, sehingga sintaksisnya mirip (lebih tepatnya, mirip dengan notasi obyek di JavaScript), namun format ini juga sering digunakan dalam bahasa pemogramman yang di luar JavaScript.
 
 2. Jelaskan mengapa kita memerlukan _data delivery_ dalam pengimplementasian sebuah platform?
 
@@ -89,13 +89,15 @@ Data yang ingin digunakan oleh pengguna harusnya dapat disajikan dengan metode y
 
 - Buat aplikasi baru dan tambahkan di `settings.py` (`INSTALLED_APPS`) dalam proyek.
 - Buat template HTML untuk *data delivery* dengan HTML, lalu tambahkan itu ke dalam `views.py`
-- Side: Implementasi bonus. Tambah pesan sesuai jumlah yang telah ditonton.
+- Side: Implementasi bonus, tambah pesan sesuai jumlah yang telah ditonton.
 - Bersamaan dengan sebelumnya, tambahkan view yang sesuai untuk JSON dan XML ke dalam `views.py`
 - Side: Tambah view untuk ID spesifik di `views.py`.
 - Tambah `urlpatterns` yang sesuai di dalam `urls.py`.
 - Tambah `urls.py` aplikasi ke dalam `urls.py` proyek.
 - Buat data, [Mockaroo](https://www.mockaroo.com/) digunakan untuk mempermudah pembuatan, dengan penyesuaian.
 - Buat model yang digunakan sesuai dengan data yang ada pada `models.py`.
+- Jalankan `python manage.py makemigrations` dan `python manage.py migrate`.
 - Buat unit test untuk memeriksa respons aplikasi.
+- Sesuaikan `Procfile` agar men-load datanya.
 - *Add*, *commit*, dan *push* perubahan yang ada. GitHub Actions akan men-*deploy* aplikasi ke Heroku
 - Gunakan Postman untuk memeriksa respons aplikasi dari luar.
