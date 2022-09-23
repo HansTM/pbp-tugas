@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<title>Masuk</title>
+{% endblock meta %}
+
+{% block content %}
+
+<main class="login">
+
+	<nav>
+		<h1>Masuk</h1>
+	</nav>
+
+	<form method="POST" action="">
+		{% csrf_token %}
+		<table>
+			<tr>
+				<td>Username: </td>
+				<td><input type="text" name="username" placeholder="Username" class="form-control"></td>
+			</tr>
+
+			<tr>
+				<td>Password: </td>
+				<td><input type="password" name="password" placeholder="Password" class="form-control"></td>
+			</tr>
+
+			<tr>
+				<td></td>
+				<td><input class="btn login_btn" type="submit" value="Login"></td>
+			</tr>
+		</table>
+	</form>
+
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	<p>Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat akun</a>.</p>
+
+</div>
+
+{% endblock content %}
