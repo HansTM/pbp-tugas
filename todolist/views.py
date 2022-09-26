@@ -20,7 +20,7 @@ def show_todolist(request):
 	print(data)
 	context = {
 		'data': data,
-		'last_login': request.COOKIES['last_login'],
+		# 'last_login': request.COOKIES['last_login'],
 	}
 
 	return render(request, "todolist.html", context)
@@ -42,7 +42,7 @@ def create_task(request):
 	
 	context = {
 		'form': form,
-		'last_login': request.COOKIES['last_login'],
+		# 'last_login': request.COOKIES['last_login'],
 	}
 	return render(request, 'create-task.html', context)
 
@@ -67,7 +67,7 @@ def login_user(request):
 		if user is not None:
 			login(request, user)
 			response = HttpResponseRedirect(reverse("todolist:todolist"))
-			response.set_cookie('last_login', str(datetime.datetime.now())) # membuat cookie last_login dan menambahkannya ke dalam response
+			# response.set_cookie('last_login', str(datetime.datetime.now())) # membuat cookie last_login dan menambahkannya ke dalam response
 			return response
 		else:
 			messages.info(request, 'Username atau password salah!')
@@ -77,6 +77,6 @@ def login_user(request):
 def logout_user(request):
 	logout(request)
 	response = HttpResponseRedirect(reverse('todolist:login'))
-	response.delete_cookie('last_login')
+	# response.delete_cookie('last_login')
 	messages.info(request, 'Berhasil keluar!')
 	return response
