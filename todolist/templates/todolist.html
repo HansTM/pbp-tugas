@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-<title>Todolist</title>
+<title>To-Do List</title>
 {% endblock meta %}
 
 {% block content %}
@@ -13,25 +13,72 @@
 		<span>Masuk sebagai {{ request.user }}</span>
 		<a href="{% url 'todolist:logout' %}">🚪 Keluar</a>
 	</nav>
-	<h1>Todolist</h1>
+	<h1>To-Do List</h1>
 </header>
 
 <main>
 
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
+	{% if data %}
 	<table>
 		<tr>
+			<th>Status</th>
 			<th>Title</th>
 			<th>Description</th>
+			<th>Hapus</th>
 		</tr>
 		{% for item in data %}
 		<tr>
+			<td>
+				<form method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="id" value="{{ item.pk }}">
+					{% if item.is_finished %}
+						<input type="hidden" name="action" value="undone">
+						<input type="submit" name="submit" value="✅" style="margin: 0" />
+					{% else %}
+						<input type="hidden" name="action" value="done">
+						<input type="submit" name="submit" value="⬜" style="margin: 0" />
+					{% endif %}
+				</form>
+			</td>
 			<td>{{ item.title }}</td>
 			<td>{{ item.description }}</td>
+			<td>
+				<form method="POST">
+					{% csrf_token %}
+					<input type="hidden" name="id" value="{{ item.pk }}">
+					<input type="hidden" name="action" value="delete">
+					<input type="submit" name="submit" value="Hapus" style="margin: 0" />
+				</form>
+			</td>
 		</tr>
 		{% endfor %}
 	</table>
+	{% else %}
+	<p>Disini belum ada task. Ingin membuat task?</p>
+	<a href="{% url 'todolist:create_task' %}"><button>➕ Buat Task</button></a>
+	{% endif %}
 
 
 </main>
+
+<style>
+	main > table [role="button"], 
+	main > table button, 
+	main > table input[type="button"], 
+	main > table input[type="reset"], 
+	main > table input[type="submit"], 
+	main > table label[type="button"] {
+		padding: .5rem .7rem
+	}
+</style>
 
 {% endblock content %}

@@ -12,6 +12,14 @@
 		<h1>Masuk</h1>
 	</nav>
 
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
 	<form method="POST" action="">
 		{% csrf_token %}
 		<table>
@@ -31,14 +39,6 @@
 			</tr>
 		</table>
 	</form>
-
-	{% if messages %}
-	<ul>
-		{% for message in messages %}
-		<li>{{ message }}</li>
-		{% endfor %}
-	</ul>
-	{% endif %}
 
 	<p>Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat akun</a>.</p>
 

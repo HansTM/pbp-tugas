@@ -7,17 +7,34 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import requires_csrf_token
 import datetime
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import TaskForm
 
 @login_required(login_url='/todolist/login')
+@requires_csrf_token
 def show_todolist(request):
+	
+	if request.method == "POST":
+		pk = request.POST['id']
+		action = request.POST['action']
+		task = Task.objects.filter(pk=pk)[0]
+		if action == 'done':
+			task.is_finished = True
+			task.save()
+			messages.success(request, 'Task telah berhasil diperbarui!')
+		elif action == 'undone':
+			task.is_finished = False
+			task.save()
+			messages.success(request, 'Task telah berhasil diperbarui!')
+		elif action == 'delete':
+			task.delete()
+			messages.success(request, 'Task telah berhasil dihapus!')
 
-	print(request.user)
 	data = Task.objects.filter(user=request.user)
-	print(data)
+
 	context = {
 		'data': data,
 		# 'last_login': request.COOKIES['last_login'],
@@ -35,6 +52,7 @@ def create_task(request):
 			to_save = form.save(commit=False)
 			to_save.user = request.user
 			to_save.date = datetime.date.today()
+			to_save.is_finished = False
 			to_save.save()
 			form.save_m2m()
 			messages.success(request, 'Task telah berhasil ditambah!')

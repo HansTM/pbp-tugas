@@ -7,4 +7,4 @@ class TaskForm(forms.ModelForm):
         fields = ['title', 'description']
 
     def __str__(self):
-        return self.name
+        return ""

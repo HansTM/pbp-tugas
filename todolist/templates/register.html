@@ -10,6 +10,14 @@
 
 	<h1>Registrasi</h1>
 
+	{% if messages %}
+	<ul>
+		{% for message in messages %}
+		<li>{{ message }}</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+
 	<form method="POST">
 		{% csrf_token %}
 		<table>
@@ -20,14 +28,6 @@
 			</tr>
 		</table>
 	</form>
-
-	{% if messages %}
-	<ul>
-		{% for message in messages %}
-		<li>{{ message }}</li>
-		{% endfor %}
-	</ul>
-	{% endif %}
 
 	<p>Sudah mempunyai akun? <a href="{% url 'todolist:login' %}">Masuk</a>.</p>
 

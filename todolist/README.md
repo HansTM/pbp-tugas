@@ -31,18 +31,48 @@ TODO
   - [x] http://localhost:8000/todolist/create-task berisi form pembuatan _task_.
   - [x] http://localhost:8000/todolist/logout berisi mekanisme _logout_.
 - [x] Melakukan _deployment_ ke Heroku terhadap aplikasi yang sudah kamu buat sehingga nantinya dapat diakses oleh teman-temanmu melalui Internet.
-- [ ] Membuat **dua** akun pengguna dan **tiga** _dummy data_ menggunakan model `Task` pada akun masing-masing di situs web Heroku.
+- [x] Membuat **dua** akun pengguna dan **tiga** _dummy data_ menggunakan model `Task` pada akun masing-masing di situs web Heroku.
 
 ### Bonus
 
-- [ ] Tambahkan atribut `is_finished` pada model `Task` (dengan _default value_ `False`) dan buatlah dua kolom baru pada tabel _task_ yang berisi status penyelesaian _task_ dan tombol untuk mengubah status penyelesaian suatu _task_ menjadi `Selesai` atau `Belum Selesai`.
-- [ ] Tambahkan kolom baru pada tabel _task_ yang berisi tombol untuk menghapus suatu _task_.
+- [x] Tambahkan atribut `is_finished` pada model `Task` (dengan _default value_ `False`) dan buatlah dua kolom baru pada tabel _task_ yang berisi status penyelesaian _task_ dan tombol untuk mengubah status penyelesaian suatu _task_ menjadi `Selesai` atau `Belum Selesai`.
+- [x] Tambahkan kolom baru pada tabel _task_ yang berisi tombol untuk menghapus suatu _task_.
 
 ## Jawaban
 
 ### Pertanyaan
 
 1. Apa kegunaan `{% csrf_token %}` pada elemen `<form>`? Apa yang terjadi apabila tidak ada potongan kode tersebut pada elemen `<form>`?
+
+`csrf_token` digunakan untuk menangkal *cross-site request forgery*, yang merupakan suatu serangan/*exploit* di mana suatu situs yang berbeda (domain) membuat *request* atau mengirim perintah atas nama pengguna pada suatu situs target dengan peramban web yang dimilikinya. 
+
+Pada konteks situs web dengan *form*, suatu *request* POST dapat dikirim dari mana saja kepada suatu situs dengan *form* tersebut, dan karena bentuk *request*-nya bisa ditebak (seperti apa saja yang dikirim), *request* tersebut dapat melakukan sesuatu yang berhubungan dengan situs tersebut atas nama penggunanya.
+
+Dengan token yang diberikan oleh `csrf_token` (ada alasan kenapa token ini tidak dapat diketahui dari domain mana saja, ada hubungannya dengan teknologi yang ada pada peramban web, seperti CORS), suatu server dapat mengirim suatu *form* yang ia berikan pada saat itu, dan nantinya akan memperoleh *form* yang ia berikan itu sebelumnya. Dalam kata lain, suatu server dapat percaya bahwa request *POST* yang diberikan adalah benar dari form yang ia telah berikan sebelumnya.
+
+Ini adalah salah satu cara untuk menangkal CSRF. Ada banyak lagi cara-cara untuk menangkalnya yang tidak akan dijelaskan pada bagian ini.
+
 2. Apakah kita dapat membuat elemen `<form>` secara manual (tanpa menggunakan _generator_ seperti `{{ form.as_table }}`)? Jelaskan secara gambaran besar bagaimana cara membuat `<form>` secara manual.
+
+TBA
+
 3. Jelaskan proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada _database_, hingga munculnya data yang telah disimpan pada _template_ HTML.
+
+- View membaca *request* dari client 
+- View mendapatkan *parameter* dan *value* dari *request* POST tersebut
+- Database dimanipulasi (CRUD) oleh View sesuai yang diprogram
+- View mengambil data terbaru setelah dimanipulasi untuk *template*
+- View mengembalikan hasil *render* dengan *template* dan *context* yang diberikan.
+
 4. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas.
+
+- Buat aplikasi baru dan tambahkan di `settings.py` (`INSTALLED_APPS`) dalam proyek.
+- Buat beberapa *template* HTML sesuai kebutuhan.
+- Buat model yang digunakan sesuai dengan data yang ada pada `models.py`.
+- Jalankan `python manage.py makemigrations` dan `python manage.py migrate`.
+- Buat *form* yang dibutuhkan pada `forms.py`.
+- Atur fungsi yang digunakan di `views.py`, bersamaan dengan menambahkan *template* HTML yang dibutuhkan.
+- Tambah `urlpatterns` yang sesuai di dalam `urls.py`.
+- Tambah `urls.py` aplikasi ke dalam `urls.py` proyek.
+- *Add*, *commit*, dan *push* perubahan yang ada. GitHub Actions akan men-*deploy* aplikasi ke Heroku
+- Tambahkan *test data* yang diperlukan.
