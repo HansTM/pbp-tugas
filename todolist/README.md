@@ -54,7 +54,10 @@ Ini adalah salah satu cara untuk menangkal CSRF. Ada banyak lagi cara-cara untuk
 
 2. Apakah kita dapat membuat elemen `<form>` secara manual (tanpa menggunakan _generator_ seperti `{{ form.as_table }}`)? Jelaskan secara gambaran besar bagaimana cara membuat `<form>` secara manual.
 
-TBA
+Bisa saja.
+
+- Pada templat, buatlah sebuah form yang akan mengirim sebuah *request* POST.
+- Pada `views.py`, tangani *request* POST yang diterima. Lakukan manipulasi (CRUD) yang diperlukan pada database sesuai dengan parameter yang diberikan pada *request* POST tersebut.
 
 3. Jelaskan proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada _database_, hingga munculnya data yang telah disimpan pada _template_ HTML.
 
