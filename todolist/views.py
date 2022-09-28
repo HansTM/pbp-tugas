@@ -20,18 +20,25 @@ def show_todolist(request):
 	if request.method == "POST":
 		pk = request.POST['id']
 		action = request.POST['action']
-		task = Task.objects.filter(pk=pk)[0]
-		if action == 'done':
-			task.is_finished = True
-			task.save()
-			messages.success(request, 'Task telah berhasil diperbarui!')
-		elif action == 'undone':
-			task.is_finished = False
-			task.save()
-			messages.success(request, 'Task telah berhasil diperbarui!')
-		elif action == 'delete':
-			task.delete()
-			messages.success(request, 'Task telah berhasil dihapus!')
+		tasks = Task.objects.filter(pk=pk)
+		if len(tasks) == 0:
+			messages.warning(request, 'Task tidak tersedia untuk diperbarui. Coba lagi.')
+		elif len(tasks) > 1:
+			messages.warning(request, 'Terdapat teralu banyak task yang cocok. Coba lagi.')
+		else:
+			task = tasks[0]
+			if action == 'done':
+				task.is_finished = True
+				task.save()
+				messages.success(request, 'Task telah berhasil diperbarui!')
+			elif action == 'undone':
+				task.is_finished = False
+				task.save()
+				messages.success(request, 'Task telah berhasil diperbarui!')
+			elif action == 'delete':
+				task.delete()
+				messages.success(request, 'Task telah berhasil dihapus!')
+
 
 	data = Task.objects.filter(user=request.user)
 
@@ -96,5 +103,5 @@ def logout_user(request):
 	logout(request)
 	response = HttpResponseRedirect(reverse('todolist:login'))
 	# response.delete_cookie('last_login')
-	messages.info(request, 'Berhasil keluar!')
+	messages.info(request, 'Anda telah berhasil keluar!')
 	return response

@@ -8,7 +8,7 @@
 
 <header>
 	<nav>
-		<a href="{% url 'todolist:todolist' %}" class="current">📝 Todo List</a>
+		<a href="{% url 'todolist:todolist' %}" class="current">📝 To-Do List</a>
 		<a href="{% url 'todolist:create_task' %}">➕ Buat Task</a>
 		<span>Masuk sebagai {{ request.user }}</span>
 		<a href="{% url 'todolist:logout' %}">🚪 Keluar</a>
@@ -19,14 +19,18 @@
 <main>
 
 	{% if messages %}
-	<ul>
-		{% for message in messages %}
-		<li>{{ message }}</li>
-		{% endfor %}
-	</ul>
+	<div class="notice">
+		<ul>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>	
+	</div>
 	{% endif %}
 
 	{% if data %}
+	<p>Ditemukan {{ data|length }} task.</p>
+
 	<table>
 		<tr>
 			<th>Status</th>
@@ -63,7 +67,7 @@
 		{% endfor %}
 	</table>
 	{% else %}
-	<p>Disini belum ada task. Ingin membuat task?</p>
+	<p>Tidak ada task di sini. Ingin membuat task?</p>
 	<a href="{% url 'todolist:create_task' %}"><button>➕ Buat Task</button></a>
 	{% endif %}
 

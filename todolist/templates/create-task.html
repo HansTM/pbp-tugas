@@ -8,7 +8,7 @@
 
 <header>
 	<nav>
-		<a href="{% url 'todolist:todolist' %}">📝 Todo List</a>
+		<a href="{% url 'todolist:todolist' %}">📝 To-Do List</a>
 		<a href="{% url 'todolist:create_task' %}" class="current">➕ Buat Task</a>
 		<span>Masuk sebagai {{ request.user }}</span>
 		<a href="{% url 'todolist:logout' %}">🚪 Keluar</a>
@@ -19,11 +19,13 @@
 <main class="create">
 
 	{% if messages %}
-	<ul>
-		{% for message in messages %}
-		<li>{{ message }}</li>
-		{% endfor %}
-	</ul>
+	<div class="notice">
+		<ul>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>	
+	</div>
 	{% endif %}
 
 	<form method="POST">

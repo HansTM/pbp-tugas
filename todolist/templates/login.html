@@ -13,11 +13,13 @@
 	</nav>
 
 	{% if messages %}
-	<ul>
-		{% for message in messages %}
-		<li>{{ message }}</li>
-		{% endfor %}
-	</ul>
+	<div class="notice">
+		<ul>
+			{% for message in messages %}
+			<li>{{ message }}</li>
+			{% endfor %}
+		</ul>	
+	</div>
 	{% endif %}
 
 	<form method="POST" action="">
