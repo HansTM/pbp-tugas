@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_tw.html' %}
 
 {% block meta %}
 <title>To-Do List • Hans TM @ Tugas PBP</title>
@@ -6,85 +6,122 @@
 
 {% block content %}
 
-<header>
-	<nav>
-		<a href="{% url 'todolist:todolist' %}" class="current">📝 To-Do List</a>
-		<a href="{% url 'todolist:create_task' %}">➕ Buat Task</a>
-		<span>Masuk sebagai {{ request.user }}</span>
-		<a href="{% url 'todolist:logout' %}">🚪 Keluar</a>
-	</nav>
-	<h1>To-Do List</h1>
-</header>
+<body class="bg-gradient-to-br from-orange-600 to-amber-400 h-full min-h-screen w-full loaded p-4">
+	<!-- <div class="max-w-[48rem] min-w-[24rem] m-auto bg-white rounded-md p-8 shadow-lg">
+	</div> -->
 
-<main>
+	<header class="bg-white p-2 rounded-md shadow-md mb-4">
+		<nav class="flex gap-1">
+			<a href="{% url 'todolist:todolist' %}" class="py-2 px-4 rounded-md bg-slate-100 hover:bg-slate-300">📝 To-Do List</a>
+			<a href="{% url 'todolist:create_task' %}" class="py-2 px-4 rounded-md bg-slate-100 hover:bg-slate-300">➕ Buat Task</a>
+			<span class="py-2 group relative ml-auto">
+				<span class="py-2 px-4 rounded-md bg-slate-100 hover:bg-slate-300">{{ request.user }}</span>
+				<div class="absolute pt-3 hidden group-hover:block right-0">
+					<div class="shadow-md rounded bg-white hidden group-hover:block ring ring-slate-900/5 py-2 w-32">
+						<a class="px-4 py-2 bg-white hover:bg-slate-200 w-full block" href="{% url 'todolist:logout' %}">🚪 Keluar</a>
+					</div>
+				</div>
 
-	{% if messages %}
-	<div class="notice">
-		<ul>
-			{% for message in messages %}
-			<li>{{ message }}</li>
-			{% endfor %}
-		</ul>	
+			</span>
+			
+		</nav>
+	</header>
+	
+	<div class="bg-white p-4 rounded-md shadow-md mb-4">
+		<h1 class="text-3xl font-semibold">To-Do List</h1>
+		{% if messages %}
+		<div class="mt-4 bg-sky-200 py-2 px-3 rounded-md border-sky-300 border-2">
+			<ul>
+				{% for message in messages %}
+				<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
 	</div>
-	{% endif %}
 
-	{% if data %}
-	<p>Ditemukan {{ data|length }} task.</p>
-
-	<table>
-		<tr>
-			<th>Status</th>
-			<th>Title</th>
-			<th>Description</th>
-			<th>Tanggal</th>
-			<th>Hapus</th>
-		</tr>
+	<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
 		{% for item in data %}
-		<tr>
-			<td>
-				<form method="POST">
-					{% csrf_token %}
-					<input type="hidden" name="id" value="{{ item.pk }}">
-					{% if item.is_finished %}
-						<input type="hidden" name="action" value="undone">
-						<input type="submit" name="submit" value="✅" style="margin: 0" />
-					{% else %}
-						<input type="hidden" name="action" value="done">
-						<input type="submit" name="submit" value="⬜" style="margin: 0" />
-					{% endif %}
-				</form>
-			</td>
-			<td>{{ item.title }}</td>
-			<td>{{ item.description }}</td>
-			<td>{{ item.date|date:"j F Y" }}</td>
-			<td>
-				<form method="POST">
-					{% csrf_token %}
-					<input type="hidden" name="id" value="{{ item.pk }}">
-					<input type="hidden" name="action" value="delete">
-					<input type="submit" name="submit" value="Hapus" style="margin: 0" />
-				</form>
-			</td>
-		</tr>
+		<div class="bg-white p-4 rounded-md shadow-md flex">
+			<form method="POST" class="mb-2 mr-4">
+				{% csrf_token %}
+				<input type="hidden" name="id" value="{{ item.pk }}">
+				{% if item.is_finished %}
+					<input type="hidden" name="action" value="undone">
+					<button type="submit" class="w-6 h-6 inline-block border-2 border-green-500 bg-green-500 text-white hover:bg-green-400 hover:border-green-400 relative rounded-sm"><span class="absolute -top-[0.45rem] left-[0.1rem] text-2xl">✓</span></button>
+				{% else %}
+					<input type="hidden" name="action" value="done">
+					<button type="submit" class="w-6 h-6 inline-block border-2 border-slate-300 hover:border-slate-500 rounded-sm relative"></button>
+				{% endif %}
+			</form>
+			<div>
+				<p class="text-3xl mb-2">{{ item.title }}</p>
+				<p class="mb-2">{{ item.description }}</p>
+				<p class="text-sm text-slate-400 mb-2">{{ item.date|date:"j F Y" }}</p>
+				<p>
+					<form method="POST">
+						{% csrf_token %}
+						<input type="hidden" name="id" value="{{ item.pk }}">
+						<input type="hidden" name="action" value="delete">
+						<button type="submit" class="py-2 px-3 bg-red-600 text-white hover:bg-red-700 focus:ring focus:ring-red-200 rounded-md shadow-sm">Hapus</button>
+					</form>
+				</p>
+			</div>
+		</div>
 		{% endfor %}
-	</table>
-	{% else %}
-	<p>Tidak ada task di sini. Ingin membuat task?</p>
-	<a href="{% url 'todolist:create_task' %}"><button>➕ Buat Task</button></a>
-	{% endif %}
+	</div>
 
 
-</main>
+	<main>
+	
+		{% if data %}
+		<p>Ditemukan {{ data|length }} task.</p>
+	
+		<table>
+			<tr>
+				<th>Status</th>
+				<th>Title</th>
+				<th>Description</th>
+				<th>Tanggal</th>
+				<th>Hapus</th>
+			</tr>
+			{% for item in data %}
+			<tr>
+				<td>
+					<form method="POST">
+						{% csrf_token %}
+						<input type="hidden" name="id" value="{{ item.pk }}">
+						{% if item.is_finished %}
+							<input type="hidden" name="action" value="undone">
+							<input type="submit" name="submit" value="✅" style="margin: 0" />
+						{% else %}
+							<input type="hidden" name="action" value="done">
+							<input type="submit" name="submit" value="⬜" style="margin: 0" />
+						{% endif %}
+					</form>
+				</td>
+				<td>{{ item.title }}</td>
+				<td>{{ item.description }}</td>
+				<td>{{ item.date|date:"j F Y" }}</td>
+				<td>
+					<form method="POST">
+						{% csrf_token %}
+						<input type="hidden" name="id" value="{{ item.pk }}">
+						<input type="hidden" name="action" value="delete">
+						<input type="submit" name="submit" value="Hapus" style="margin: 0" />
+					</form>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% else %}
+		<p>Tidak ada task di sini. Ingin membuat task?</p>
+		<a href="{% url 'todolist:create_task' %}"><button>➕ Buat Task</button></a>
+		{% endif %}
+	
+	
+	</main>
+</body>
 
-<style>
-	main > table [role="button"], 
-	main > table button, 
-	main > table input[type="button"], 
-	main > table input[type="reset"], 
-	main > table input[type="submit"], 
-	main > table label[type="button"] {
-		padding: .5rem .7rem
-	}
-</style>
 
 {% endblock content %}
