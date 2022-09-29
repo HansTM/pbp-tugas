@@ -18,7 +18,8 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('katalog.urls')),
+    path("__reload__/", include("django_browser_reload.urls")),
+    path('', include('index.urls')),
     path('katalog/', include('katalog.urls')),
     path('mywatchlist/', include('mywatchlist.urls')),
     path('todolist/', include('todolist.urls')),
