@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base_tw.html' %}
 
 {% block meta %}
 <title>Masuk • To-Do List • Hans TM @ Tugas PBP</title>
@@ -6,44 +6,38 @@
 
 {% block content %}
 
-<div class="container">
+<body class="bg-gradient-to-br from-orange-600 to-amber-400 h-full min-h-screen w-full flex items-center loaded" ">
+	<div class="max-w-[48rem] min-w-[24rem] m-auto bg-white rounded-md p-8 shadow-lg">
 
-	<nav>
-		<h1>Masuk</h1>
-	</nav>
+		<h1 class="text-3xl font-bold mb-4">Masuk</h1>
 
-	{% if messages %}
-	<div class="notice">
-		<ul>
-			{% for message in messages %}
-			<li>{{ message }}</li>
-			{% endfor %}
-		</ul>	
+		{% if messages %}
+		<div class="mb-4 bg-sky-200 py-2 px-3 rounded-md border-sky-300 border-2">
+			<ul>
+				{% for message in messages %}
+				<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+
+		<form method="POST" action="" class="mb-3">
+			{% csrf_token %}
+			<div class="mb-3">
+				<label for="inputUserName" class="mb-1 block">Username</label>
+				<input type="text" name="username" id="inputUserName" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" required>
+			</div>
+			<div class="mb-3">
+				<label for="inputPassword" class="mb-1 block font">Password</label>
+				<input type="password" name="password" id="inputPassword" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" required>
+			</div>
+			<button class="py-2 px-3 bg-blue-500 text-white hover:bg-blue-600 focus:ring focus:ring-blue-200 rounded-md shadow-sm" type="submit">Login</button>
+		</form>
+
+
+		<p>Belum mempunyai akun? <a href="{% url 'todolist:register' %}" class="text-blue-600 hover:text-blue-900">Buat akun</a>.</p>
+
 	</div>
-	{% endif %}
-
-	<form method="POST" action="">
-		{% csrf_token %}
-		<table>
-			<tr>
-				<td>Username: </td>
-				<td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-			</tr>
-
-			<tr>
-				<td>Password: </td>
-				<td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-			</tr>
-
-			<tr>
-				<td></td>
-				<td><input class="btn login_btn" type="submit" value="Login"></td>
-			</tr>
-		</table>
-	</form>
-
-	<p>Belum mempunyai akun? <a href="{% url 'todolist:register' %}">Buat akun</a>.</p>
-
-</div>
+</body>
 
 {% endblock content %}

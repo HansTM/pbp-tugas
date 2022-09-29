@@ -76,3 +76,7 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# django-tailwind
+theme/static/css/dist/styles.css
+todolist/static/css/dist/styles.css
