@@ -7,3 +7,6 @@ class Task(models.Model):
 	title = models.CharField(max_length=255)
 	description = models.TextField()
 	is_finished = models.BooleanField()
+
+	def __str__(self) -> str:
+		return str(self.user) + ': ' + self.title

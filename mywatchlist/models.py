@@ -6,3 +6,6 @@ class MyWatchlist(models.Model):
     rating = models.IntegerField()
     release_date = models.DateField()
     review = models.TextField()
+
+    def __str__(self) -> str:
+        return self.title
