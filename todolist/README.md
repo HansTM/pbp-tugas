@@ -56,15 +56,15 @@ Ini adalah salah satu cara untuk menangkal CSRF. Ada banyak lagi cara-cara untuk
 
 Bisa saja.
 
-- Pada templat, buatlah sebuah form yang akan mengirim sebuah *request* POST.
-- Pada `views.py`, tangani *request* POST yang diterima. Lakukan manipulasi (CRUD) yang diperlukan pada database sesuai dengan parameter yang diberikan pada *request* POST tersebut.
+- Pada templat, buatlah sebuah form yang akan mengirim sebuah *request* POST. Jika mau, gunakan `name` yang sesuai dengan *form* yang didefinisi di `forms.py`.
+- Pada `views.py`, tangani *request* POST yang diterima. Jika meggunakan `name` yang sesuai, *form* yang didefinisi di `forms.py` dapat digunakan. Jika tidak, sesuaikan dengan model database yang terdefinisi. Lakukan manipulasi (CRUD) yang diperlukan pada database sesuai dengan parameter yang diberikan pada *request* POST tersebut.
 
-3. Jelaskan proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML form, penyimpanan data pada _database_, hingga munculnya data yang telah disimpan pada _template_ HTML.
+3. Jelaskan proses alur data dari submisi yang dilakukan oleh pengguna melalui HTML *form*, penyimpanan data pada _database_, hingga munculnya data yang telah disimpan pada _template_ HTML.
 
-- View membaca *request* dari client 
-- View mendapatkan *parameter* dan *value* dari *request* POST tersebut
-- Database dimanipulasi (CRUD) oleh View sesuai yang diprogram
-- View mengambil data terbaru setelah dimanipulasi untuk *template*
+- View membaca *request* dari client.
+- View mendapatkan *parameter* dan *value* dari *request* POST tersebut.
+- Database dimanipulasi (CRUD) oleh View sesuai yang diprogram.
+- View mengambil data terbaru setelah dimanipulasi untuk *template*.
 - View mengembalikan hasil *render* dengan *template* dan *context* yang diberikan.
 
 4. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas.
@@ -74,7 +74,8 @@ Bisa saja.
 - Buat model yang digunakan sesuai dengan data yang ada pada `models.py`.
 - Jalankan `python manage.py makemigrations` dan `python manage.py migrate`.
 - Buat *form* yang dibutuhkan pada `forms.py`.
-- Atur fungsi yang digunakan di `views.py`, bersamaan dengan menambahkan *template* HTML yang dibutuhkan.
+- Masukkan *form* di dalam *template* HTML, dengan form buatan tangan atau menggunakan `.as_table` dkk.
+- Atur fungsi yang digunakan di `views.py`, bersamaan dengan menambahkan *template* HTML dan *form* yang dibutuhkan.
 - Tambah `urlpatterns` yang sesuai di dalam `urls.py`.
 - Tambah `urls.py` aplikasi ke dalam `urls.py` proyek.
 - *Add*, *commit*, dan *push* perubahan yang ada. GitHub Actions akan men-*deploy* aplikasi ke Heroku
