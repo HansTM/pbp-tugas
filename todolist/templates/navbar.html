@@ -1,0 +1,15 @@
+<header class="bg-white p-2 rounded-md shadow-md mb-4 hover:shadow-xl transition">
+	<nav class="flex gap-1">
+		<a href="{% url 'todolist:todolist' %}" class="py-2 px-4 rounded-md hover:bg-slate-300 transition">📝 To-Do List</a>
+		<a href="{% url 'todolist:create_task' %}" class="py-2 px-4 rounded-md hover:bg-slate-300 transition">➕ Buat Task</a>
+		<span class="py-2 group relative ml-auto">
+			<span class="py-2 px-4 rounded-md bg-slate-100 hover:bg-slate-300 transition cursor-pointer">{{ request.user }}</span>
+			<div class="absolute pt-3 hidden group-hover:block right-0 transition">
+				<div class="shadow-md rounded bg-white ring ring-slate-900/5 py-2 w-32">
+					<a class="px-4 py-2 bg-white hover:bg-slate-200 w-full block transition" href="{% url 'todolist:logout' %}">🚪 Keluar</a>
+				</div>
+			</div>
+
+		</span>
+	</nav>
+</header>

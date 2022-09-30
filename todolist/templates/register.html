@@ -7,9 +7,9 @@
 {% block content %}
 
 <body class="bg-gradient-to-br from-orange-600 to-amber-400 h-full min-h-screen w-full flex items-center loaded" ">
-	<div class="max-w-[48rem] min-w-[24rem] m-auto bg-white rounded-md p-8 shadow-lg">
+	<div class="max-w-[48rem] min-w-[24rem] m-auto bg-white rounded-md p-8 shadow-md hover:shadow-xl transition">
 
-		<h1 class="text-3xl font-bold mb-4">Daftar</h1>
+		<h1 class="text-4xl font-semibold mb-4">Daftar</h1>
 
 		{% if messages %}
 		<div class="mb-4 bg-sky-200 py-2 px-3 rounded-md border-sky-300 border-2">
@@ -25,12 +25,12 @@
 			{% csrf_token %}
 			<div class="mb-3">
 				<label for="inputUserName" class="mb-1 block">Username</label>
-				<input type="text" name="username" id="inputUserName" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" required>
+				<input type="text" name="username" id="inputUserName" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-red-500 focus:invalid:ring-red-500 transition" required>
 				<p class="text-xs">150 karakter atau kurang. Huruf, angka dan @/./+/-/_ saja.</p>
 			</div>
 			<div class="mb-3">
 				<label for="inputPassword" class="mb-1 block">Password</label>
-				<input type="password" name="password1" id="inputPassword" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" required>
+				<input type="password" name="password1" id="inputPassword" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-pink-500 focus:invalid:ring-red-500 transition" required>
 				<ul class="text-xs">
 					<li>Password Anda tidak boleh terlalu mirip dengan informasi pribadi Anda yang lain.</li>
 					<li>Password Anda harus mengandung setidaknya 8 karakter.</li>
@@ -40,14 +40,14 @@
 			</div>
 			<div class="mb-3">
 				<label for="inputPasswordConfirm" class="mb-1 block">Konfirmasi password</label>
-				<input type="password" name="password2" id="inputPasswordConfirm" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" required>
+				<input type="password" name="password2" id="inputPasswordConfirm" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-red-500 focus:invalid:ring-red-500 transition" required>
 				<p class="text-xs">Masukkan password yang sama seperti sebelumnya, untuk verifikasi.</p>
 			</div>
-			<button class="py-2 px-3 bg-blue-500 text-white hover:bg-blue-600 focus:ring focus:ring-blue-200  rounded-md shadow-sm" type="submit">Daftar</button>
+			<button class="py-2 px-3 bg-blue-500 text-white hover:bg-blue-600 focus:ring focus:ring-blue-200 rounded-md shadow-sm transition" type="submit">Daftar</button>
 		</form>
 
 
-		<p>Sudah mempunyai akun? <a href="{% url 'todolist:login' %}" class="text-blue-600 hover:text-blue-900">Masuk</a>.</p>
+		<p>Sudah mempunyai akun? <a href="{% url 'todolist:login' %}" class="text-blue-600 hover:text-blue-900 transition">Masuk</a>.</p>
 
 	</div>
 </body>

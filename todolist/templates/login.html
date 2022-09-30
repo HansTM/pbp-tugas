@@ -6,10 +6,10 @@
 
 {% block content %}
 
-<body class="bg-gradient-to-br from-orange-600 to-amber-400 h-full min-h-screen w-full flex items-center loaded" ">
-	<div class="max-w-[48rem] min-w-[24rem] m-auto bg-white rounded-md p-8 shadow-lg">
+<body class="bg-gradient-to-br from-orange-600 to-amber-400 h-full min-h-screen w-full flex items-center loaded">
+	<div class="max-w-[48rem] min-w-[24rem] m-auto bg-white rounded-md p-8 shadow-md hover:shadow-xl transition">
 
-		<h1 class="text-3xl font-bold mb-4">Masuk</h1>
+		<h1 class="text-4xl font-semibold mb-4">Masuk</h1>
 
 		{% if messages %}
 		<div class="mb-4 bg-sky-200 py-2 px-3 rounded-md border-sky-300 border-2">
@@ -25,17 +25,17 @@
 			{% csrf_token %}
 			<div class="mb-3">
 				<label for="inputUserName" class="mb-1 block">Username</label>
-				<input type="text" name="username" id="inputUserName" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" required>
+				<input type="text" name="username" id="inputUserName" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-red-500 focus:invalid:ring-red-500 transition" required>
 			</div>
 			<div class="mb-3">
 				<label for="inputPassword" class="mb-1 block font">Password</label>
-				<input type="password" name="password" id="inputPassword" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-pink-500 focus:invalid:ring-pink-500" required>
+				<input type="password" name="password" id="inputPassword" class="w-full border border-slate-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:border-sky-500 focus:ring-sky-500 focus:ring-1 mb-2 focus:invalid:border-red-500 focus:invalid:ring-red-500 transition" required>
 			</div>
-			<button class="py-2 px-3 bg-blue-500 text-white hover:bg-blue-600 focus:ring focus:ring-blue-200 rounded-md shadow-sm" type="submit">Login</button>
+			<button class="py-2 px-3 bg-blue-500 text-white hover:bg-blue-600 focus:ring focus:ring-blue-200 rounded-md shadow-sm transition" type="submit">Login</button>
 		</form>
 
 
-		<p>Belum mempunyai akun? <a href="{% url 'todolist:register' %}" class="text-blue-600 hover:text-blue-900">Buat akun</a>.</p>
+		<p>Belum mempunyai akun? <a href="{% url 'todolist:register' %}" class="text-blue-600 hover:text-blue-900 transition">Buat akun</a>.</p>
 
 	</div>
 </body>
