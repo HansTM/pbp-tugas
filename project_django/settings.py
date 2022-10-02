@@ -26,8 +26,9 @@ PRODUCTION = os.getenv('DATABASE_URL') is not None
 SECRET_KEY = 'django-insecure-3@5wx%(^*zl68l(o$^m-3%cvjv0g&mom1ra=oj5f048_al57s7'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if not 'HEROKU' in os.environ:
-    DEBUG = True
+# if not 'HEROKU' in os.environ:
+#     DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
@@ -39,10 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django_browser_reload',
-    'tailwind',
     'theme',
+    'django.contrib.staticfiles',
+    # 'django_browser_reload',
+    'tailwind',
     'index',
     'katalog',
     'mywatchlist',
@@ -58,7 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django_browser_reload.middleware.BrowserReloadMiddleware'
+    # 'django_browser_reload.middleware.BrowserReloadMiddleware'
 ]
 
 ROOT_URLCONF = 'project_django.urls'
