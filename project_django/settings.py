@@ -150,6 +150,11 @@ for directory in [*STATICFILES_DIRS, STATIC_ROOT]:
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Django-Tailwind
+# https://django-tailwind.readthedocs.io/en/latest/settings.html
 TAILWIND_APP_NAME = 'theme'
+TAILWIND_CSS_PATH = 'css/tailwind.css'
 if os.name == 'nt':
     NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+# else:
+#     NPM_BIN_PATH = "/usr/local/bin/npm"
