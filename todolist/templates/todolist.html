@@ -14,8 +14,9 @@
 	
 	<div class="bg-white p-4 rounded-md mb-4 shadow-md hover:shadow-xl transition">
 		<h1 class="text-4xl font-semibold">To-Do List</h1>
+		<p class="mt-4">Ditemukan {{ data|length }} task.</p>
 		{% if messages %}
-		<div class="mt-4 bg-sky-200 py-2 px-3 rounded-md border-sky-300 border-2">
+		<div class="bg-sky-200 py-2 px-3 mt-4 rounded-md border-sky-300 border-2">
 			<ul>
 				{% for message in messages %}
 				<li>{{ message }}</li>
@@ -25,6 +26,7 @@
 		{% endif %}
 	</div>
 
+	{% if data %}
 	<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
 		{% for item in data %}
 		<div class="bg-white p-4 rounded-md flex shadow-md hover:shadow-xl transition">
@@ -55,6 +57,14 @@
 		</div>
 		{% endfor %}
 	</div>
+	{% else %}
+	<div class="bg-white p-4 rounded-md shadow-md hover:shadow-xl transition">
+		<p>Tidak ada task di sini. Ingin membuat task?</p>
+		<div class="flex mt-3">
+			<a href="{% url 'todolist:create_task' %}" class="py-2 px-3 bg-blue-500 text-white hover:bg-blue-600 focus:ring focus:ring-blue-200 rounded-md shadow-sm transition">➕ Buat Task</a>	
+		</div>
+	</div>
+	{% endif %}
 
 </body>
 
