@@ -23,5 +23,10 @@ Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/
 - Tugas 4: Pengimplementasian Form dan Autentikasi Menggunakan Django
   - Soal: [tugas/tugas-4](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-4)
   - Kode sumber: [todolist/](todolist/)
+  - README.md: [todolist/README.tugas-4.md](todolist/README.tugas-4.md)
+  - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/todolist
+- Tugas 5: Web Design Using HTML, CSS, and CSS Framework
+  - Soal: [tugas/tugas-5](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-5)
+  - Kode sumber: [todolist/](todolist/)
   - README.md: [todolist/README.md](todolist/README.md)
   - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/todolist
