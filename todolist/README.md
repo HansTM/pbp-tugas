@@ -30,11 +30,33 @@ Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/todolist
 
 1. Apa perbedaan dari Inline, Internal, dan External CSS? Apa saja kelebihan dan kekurangan dari masing-masing _style_?
 
-<!-- TODO kekurangan dan kelebihan -->
+- **External CSS** dibuat di sebuah file `.css` baru, lalu digunakan dengan menambahkan elemen `<link>` ke dalam suatu halaman.
+  
+  ```html
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  ```
+  
+  External CSS memudahkan kita untuk menggunakan suatu *stylesheet* dengan satu sumber yang sama. Ini membuat gaya dalam semua (atau sebagian besar) halaman di suatu situs/bagian dapat menjadi konsisten, sekaligus dapat mengurangi jumlah/ukuran *request*, karena (a) suatu *stylesheet* dapat di-*cache* dan (b) kita tidak perlu menyalin isi *stylesheet*-nya dalam halaman-halaman yang kita miliki. 
 
-- External CSS dibuat di sebuah file `.css` baru, lalu dimasukkan dengan menggunakan elemen `<link>` ke dalam suatu halaman.
-- Internal CSS dibuat di dalam sebuah elemen `<style>`, sehingga hanya berlaku pada satu halaman yang dibuat.
-- Inline CSS dibuat di dalam properti `style=""` dalam sebuah elemen, sehingga hanya berlakuk pada elemen yang dimaksud.
+  Kekurangannya adalah *style* yang terdefinisi dapat saja teralu umum, sehingga diperlukan pengaturan-pengaturan tambahan (dalam external, internal, atau inline CSS) untuk menyesuaikan gayanya jika diperlukan.
+
+- **Internal CSS** dibuat di dalam sebuah elemen `<style>`, sehingga hanya berlaku pada satu halaman yang dibuat.
+  
+  ```html
+  <style>
+    .p { margin-bottom: 1rem }
+  </style>
+  ```
+
+  Internal CSS dapat digunakan untuk membuat gaya semua elemen pada suatu halaman menjadi konsisten. Namun, jika ada yang menginginkan semua halaman memiliki gaya yang sama, isi yang sama itu perlu disalin ke dalam semua halaman yang diperlukan, yang akan menambah ukuran *request*-nya. Jikalau begitu, mending menggunakan external CSS. 
+
+- **Inline CSS** dibuat di dalam properti `style=""` dalam sebuah elemen, sehingga hanya berlakuk pada elemen yang dimaksud.
+  
+  ```html
+  <p style="margin-bottom: 1rem"></p>
+  ```
+
+  Inline CSS dapat digunakan untuk mengatur gaya dalam suatu elemen. Pastinya pengaturan dengan cara ini lumayan terbatas, sehingga untuk mengubah gaya secara serentak, lebih baik menggunakan cara lain.
 
 2. Jelaskan tag HTML5 yang kamu ketahui.
 
@@ -82,3 +104,11 @@ Ada banyak *CSS selector* yang tersedia. Beberapa yang sering saya pakai adalah 
   Contohnya adalah `div > p`, hang akan memilih semua elemen `<p>` yang merupakan anak dari elemen `<div>`
 
 4. Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas.
+
+- Implementasi [Tailwind CSS](https://tailwindcss.com/) di Django menggunakan [Django-Tailwind](https://django-tailwind.readthedocs.io/en/latest/installation.html). Hapus juga *stylesheet* yang lama agar tidak mengganggu implementasi Tailwind CSS tersebut.
+- Rombak semua template untuk penggayaan.
+  - Buat form secara manual, dibanding menggunakan `.as_table`.
+  - Ubah tiap butir pada to-do list agar membentuk kartu-kartu.
+  - Pisahkan navbar agar sama di beberapa halaman.
+  - Percantik halaman dengan warna, *spacing* (*margin*/*padding*), animasi, border, dsb dengan menggunakan kelas-kelas yang ditawarkan oleh Tailwind CSS.
+- Atur Django-Tailwind agar dapat mem-*build* Tailwind CSS saat *deployment*. ([referensi](https://www.khanna.law/blog/deploying-django-tailwind-to-heroku))
