@@ -105,3 +105,128 @@ def logout_user(request):
 	# response.delete_cookie('last_login')
 	messages.info(request, 'Anda telah berhasil keluar!')
 	return response
+
+def show_todolist_json(request):
+
+	if request.user.is_authenticated:
+		data = Task.objects.filter(user=request.user)
+	else:
+		data = {}
+
+	return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+def show_todolist_ajax(request):	
+	return render(request, "todolist-ajax.html", {})
+
+def apires_ok():
+	return HttpResponse(serializers.serialize("json", {}), content_type="application/json", status=200)
+
+def apires_bad_response():
+	return HttpResponse(serializers.serialize("json", {}), content_type="application/json", status=400)
+
+
+def api_done(request, id):
+	# if not (request.method == "POST" or request.method == "PATCH"):
+	# 	return apires_bad_response()
+	if not id: 
+		return apires_bad_response()
+	
+	tasks = Task.objects.filter(pk=id)
+	if len(tasks) != 1:
+		return apires_bad_response()
+	
+	task = tasks[0]
+	task.is_finished = True
+	task.save()
+
+	return apires_ok()
+
+def api_undone(request, id):
+	# if not (request.method == "POST" or request.method == "PATCH"):
+	# 	return apires_bad_response()
+	if not id: 
+		return apires_bad_response()
+	
+	tasks = Task.objects.filter(pk=id)
+	if len(tasks) != 1:
+		return apires_bad_response()
+	
+	task = tasks[0]
+	task.is_finished = False
+	task.save()
+
+	return apires_ok()
+
+def api_delete(request, id):
+	# if not (request.method == "DELETE" or request.method == "POST"):
+	# 	return apires_bad_response()
+	if not id: 
+		return apires_bad_response()
+	
+	tasks = Task.objects.filter(pk=id)
+	if len(tasks) != 1:
+		return apires_bad_response()
+	
+	task = tasks[0]
+	task.delete()
+
+	return apires_ok()
+
+# @login_required(login_url='/todolist/login')
+# @requires_csrf_token
+# def show_todolist(request):
+	
+# 	if request.method == "POST":
+# 		pk = request.POST['id']
+# 		action = request.POST['action']
+# 		tasks = Task.objects.filter(pk=pk)
+# 		if len(tasks) == 0:
+# 			messages.warning(request, 'Task tidak tersedia untuk diperbarui. Coba lagi.')
+# 		elif len(tasks) > 1:
+# 			messages.warning(request, 'Terdapat teralu banyak task yang cocok. Coba lagi.')
+# 		else:
+# 			task = tasks[0]
+# 			if action == 'done':
+# 				task.is_finished = True
+# 				task.save()
+# 				messages.success(request, 'Task telah berhasil diperbarui!')
+# 			elif action == 'undone':
+# 				task.is_finished = False
+# 				task.save()
+# 				messages.success(request, 'Task telah berhasil diperbarui!')
+# 			elif action == 'delete':
+# 				task.delete()
+# 				messages.success(request, 'Task telah berhasil dihapus!')
+
+
+# 	data = Task.objects.filter(user=request.user)
+
+# 	context = {
+# 		'data': data,
+# 		# 'last_login': request.COOKIES['last_login'],
+# 	}
+
+# 	return render(request, "todolist.html", context)
+
+# @login_required(login_url='/todolist/login')
+# def create_task(request):
+# 	form = TaskForm()
+
+# 	if request.method == "POST":
+# 		form = TaskForm(request.POST, instance=Task())
+# 		if form.is_valid():
+# 			to_save = form.save(commit=False)
+# 			to_save.user = request.user
+# 			to_save.date = datetime.date.today()
+# 			to_save.is_finished = False
+# 			to_save.save()
+# 			form.save_m2m()
+# 			messages.success(request, 'Task telah berhasil ditambah!')
+# 			return redirect('todolist:todolist')
+	
+# 	context = {
+# 		'form': form,
+# 		# 'last_login': request.COOKIES['last_login'],
+# 	}
+# 	return render(request, 'create-task.html', context)
+

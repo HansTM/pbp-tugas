@@ -1,0 +1,71 @@
+{% extends 'base_tw.html' %}
+{% load static %}
+
+{% block meta %}
+<title>To-Do List • Hans TM @ Tugas PBP</title>
+<!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
+<script defer src="{% static 'js/todolist-ajax.js' %}"></script>
+<script>window.CSRF_TOKEN = "{{ csrf_token }}"</script>
+{% endblock meta %}
+
+{% block content %}
+<body class="bg-gradient-to-br from-orange-600 to-amber-400 h-full min-h-screen w-full loaded p-4">
+	<!-- <div class="max-w-[48rem] min-w-[24rem] m-auto bg-white rounded-md p-8 shadow-lg">
+	</div> -->
+
+	{% include 'navbar.html' %}
+	
+	<div class="bg-white p-4 rounded-md mb-4 shadow-md hover:shadow-xl transition">
+		<h1 class="text-4xl font-semibold">To-Do List</h1>
+		<p id="page-status" class="mt-4">Sedang memuat...</p>
+		{% if messages %}
+		<div class="bg-sky-200 py-2 px-3 mt-4 rounded-md border-sky-300 border-2">
+			<ul>
+				{% for message in messages %}
+				<li>{{ message }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+		{% endif %}
+	</div>
+
+	<div id="wrapper"></div>
+</body>
+
+<template id="template-none">
+	<div class="bg-white p-4 rounded-md shadow-md hover:shadow-xl transition">
+		<p>Tidak ada task di sini. Ingin membuat task?</p>
+		<div class="flex mt-3">
+			<a href="{% url 'todolist:create_task' %}" class="py-2 px-3 bg-blue-500 text-white hover:bg-blue-600 focus:ring focus:ring-blue-200 rounded-md shadow-sm transition">➕ Buat Task</a>	
+		</div>
+	</div>
+</template>
+
+<template id="template-items">
+	<div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4">
+	</div>
+</template>
+
+<template id="template-item">
+	<div class="bg-white p-4 rounded-md flex shadow-md hover:shadow-xl transition">
+		<div class="item-checkbox-wrapper mb-2 mr-4"></div>
+		<div>
+			<p class="item-title text-3xl mb-2">{{ item.title }}</p>
+			<p class="item-description mb-2">{{ item.description }}</p>
+			<p class="item-date text-sm text-slate-400 mb-2 ">{{ item.date|date:"j F Y" }}</p>
+			<p>
+				<button class="item-delete py-2 px-3 bg-red-600 text-white hover:bg-red-700 focus:ring focus:ring-red-200 rounded-md shadow-sm transition">Hapus</button>
+			</p>
+		</div>
+	</div>
+</template>
+
+<template id="template-item-done">
+	<button class="item-checkbox w-6 h-6 inline-block border-2 border-green-600 bg-green-500 text-white hover:bg-green-400 hover:border-green-500 relative rounded-sm transition"><span class="absolute -top-[0.4rem] left-[0.1rem] text-2xl">✓</span></button>
+</template>
+
+<template id="template-item-undone">
+	<button class="item-checkbox w-6 h-6 inline-block border-2 border-slate-300 hover:border-slate-500 rounded-sm relative transition"></button>
+</template>
+
+{% endblock content %}
