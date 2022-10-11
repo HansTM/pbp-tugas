@@ -31,7 +31,7 @@ Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/
   - README.md: [todolist/README.tugas-5.md](todolist/README.tugas-5.md)
   - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/todolist
 - Tugas 6: JavaScript dan AJAX
-  - Soal: [tugas/tugas-5](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-6)
+  - Soal: [tugas/tugas-6](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-6)
   - Kode sumber: [todolist/](todolist/)
   - README.md: [todolist/README.md](todolist/README.md)
   - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/todolist
