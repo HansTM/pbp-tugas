@@ -13,9 +13,9 @@ Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/todolist
 ## Routing
 
 - [/](https://hanstm-pbp-tugas.herokuapp.com/todolist): Halaman utama, berisi *to-do list*.
-- [/create-task](https://hanstm-pbp-tugas.herokuapp.com/todolist/login): Untuk membuat task baru.
+- [/create-task](https://hanstm-pbp-tugas.herokuapp.com/todolist/create-task): Untuk membuat task baru.
 - [/login](https://hanstm-pbp-tugas.herokuapp.com/todolist/login): Untuk masuk ke dalam akun.
-- [/register](https://hanstm-pbp-tugas.herokuapp.com/todolist/login): Untuk mendaftar akun baru.
+- [/register](https://hanstm-pbp-tugas.herokuapp.com/todolist/register): Untuk mendaftar akun baru.
 
 ## Checklist
 

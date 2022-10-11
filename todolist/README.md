@@ -13,32 +13,33 @@ Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/todolist
 ## Routing
 
 - [/](https://hanstm-pbp-tugas.herokuapp.com/todolist): Halaman utama, berisi *to-do list*.
-- [/create-task](https://hanstm-pbp-tugas.herokuapp.com/todolist/login): Untuk membuat task baru.
 - [/login](https://hanstm-pbp-tugas.herokuapp.com/todolist/login): Untuk masuk ke dalam akun.
-- [/register](https://hanstm-pbp-tugas.herokuapp.com/todolist/login): Untuk mendaftar akun baru.
+- [/register](https://hanstm-pbp-tugas.herokuapp.com/todolist/register): Untuk mendaftar akun baru.
+- [/create-task](https://hanstm-pbp-tugas.herokuapp.com/todolist/create-task): Untuk membuat task baru. (usang karena AJAX)
+- [/old](https://hanstm-pbp-tugas.herokuapp.com/todolist/old): Halaman utama lama, menggunakan templat Django. (usang karena AJAX)
 
 ## Checklist
 
-- [ ] Mengubah tugas 4 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
-  - [ ] AJAX GET
-    - [ ] Buatlah _view_ baru yang mengembalikan seluruh data task dalam bentuk JSON.
-    - [ ] Buatlah _path_ `/todolist/json` yang mengarah ke _view_ yang baru kamu buat.
-    - [ ] Lakukan pengambilan task menggunakan AJAX GET.
-  - [ ] AJAX POST
-    - [ ] Buatlah sebuah tombol `Add Task` yang membuka sebuah modal dengan form untuk menambahkan task.
-    - [ ] Buatlah _view_ baru untuk menambahkan task baru ke dalam _database_.
-    - [ ] Buatlah _path_ `/todolist/add` yang mengarah ke _view_ yang baru kamu buat.
-    - [ ] Hubungkan form yang telah kamu buat di dalam modal kamu ke _path_ `/todolist/add`
-    - [ ] Tutup modal setelah penambahan task telah berhasil dilakukan.
-    - [ ] Lakukan _refresh_ pada halaman utama secara asinkronus untuk menampilkan _list_ terbaru tanpa _reload_ seluruh _page_.
+- [x] Mengubah tugas 4 yang telah dibuat sebelumnya menjadi menggunakan AJAX.
+  - [x] AJAX GET
+    - [x] Buatlah _view_ baru yang mengembalikan seluruh data task dalam bentuk JSON.
+    - [x] Buatlah _path_ `/todolist/json` yang mengarah ke _view_ yang baru kamu buat.
+    - [x] Lakukan pengambilan task menggunakan AJAX GET.
+  - [x] AJAX POST
+    - [x] Buatlah sebuah tombol `Add Task` yang membuka sebuah modal dengan form untuk menambahkan task.
+    - [x] Buatlah _view_ baru untuk menambahkan task baru ke dalam _database_.
+    - [x] Buatlah _path_ `/todolist/add` yang mengarah ke _view_ yang baru kamu buat.
+    - [x] Hubungkan form yang telah kamu buat di dalam modal kamu ke _path_ `/todolist/add`
+    - [x] Tutup modal setelah penambahan task telah berhasil dilakukan.
+    - [x] Lakukan _refresh_ pada halaman utama secara asinkronus untuk menampilkan _list_ terbaru tanpa _reload_ seluruh _page_.
 ### Bonus
 
-- [ ] Menambahkan fungsionalitas hapus dengan menggunakan AJAX DELETE.
-  - [ ] Buatlah kolom baru pada task dengan tombol Hapus.
-  - [ ] Buatlah _view_ baru yang menghapus task dengan ID tertentu.
-  - [ ] Buatlah _path_ `/todolist/delete/{id}` yang menerima ID dari _path_ dan meneruskannya kepada _view_.
-  - [ ] Buatlah fungsi JavaScript yang memanggil _endpoint_ penghapusan task.
-  - [ ] Lakukan _refresh_ pada halaman utama secara asinkronus untuk menampilkan _list_ terbaru tanpa _reload_ seluruh _page_.
+- [x] Menambahkan fungsionalitas hapus dengan menggunakan AJAX DELETE.
+  - [x] Buatlah kolom baru pada task dengan tombol Hapus.
+  - [x] Buatlah _view_ baru yang menghapus task dengan ID tertentu.
+  - [x] Buatlah _path_ `/todolist/delete/{id}` yang menerima ID dari _path_ dan meneruskannya kepada _view_.
+  - [x] Buatlah fungsi JavaScript yang memanggil _endpoint_ penghapusan task.
+  - [x] Lakukan _refresh_ pada halaman utama secara asinkronus untuk menampilkan _list_ terbaru tanpa _reload_ seluruh _page_.
 
 ## Jawaban
 
