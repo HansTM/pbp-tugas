@@ -88,6 +88,7 @@ formEl.addEventListener("submit", async event => {
 		body: JSON.stringify(formData)
 	})
 	await loadTodolist(await request.json())
+	closeModal()
 	// submitEl.disabled = true
 	// submitEl.disabled = false
 	// submitEl.textContent = "✅"
@@ -96,22 +97,29 @@ formEl.addEventListener("submit", async event => {
 	// }, 1000)
 })
 
-const openModalEl = document.querySelector("#add-open-modal")
-openModalEl.addEventListener("click", event => {
+const openModal = () => {
 	modalEl.classList.remove("hidden")
 	setTimeout(() => {
 		modalEl.classList.remove("opacity-0")
 	}, 0)
-	// modalEl.classList.remove("opacity-0")
+}
+
+const closeModal = () => {
+	setTimeout(() => {
+		modalEl.classList.add("hidden")
+	}, 150)
+	modalEl.classList.add("opacity-0")
+}
+
+const openModalEl = document.querySelector("#add-open-modal")
+openModalEl.addEventListener("click", event => {
+	openModal()
 })
 
 const modalEl = document.querySelector("#add-modal")
 modalEl.addEventListener("click", event => {
 	if (event.target.id !== "add-modal") return
-	setTimeout(() => {
-		modalEl.classList.add("hidden")
-	}, 150)
-	modalEl.classList.add("opacity-0")
+	closeModal()
 })
 
 
