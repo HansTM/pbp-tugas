@@ -1,5 +1,5 @@
 from django.urls import path
-from todolist.views import show_todolist, register, login_user, logout_user, create_task, show_todolist_json, show_todolist_ajax, api_done, api_undone, api_delete
+from todolist.views import show_todolist, register, login_user, logout_user, create_task, show_todolist_json, show_todolist_ajax, api_done, api_undone, api_delete, api_add
 
 app_name = 'todolist'
 
@@ -13,11 +13,13 @@ urlpatterns = [
 	path('json', show_todolist_json, name='todolist_json'),
 
 	# API (no prefix)
+	path('add', api_add, name="api_add"),
 	path('done/<int:id>', api_done, name="api_done"),
 	path('undone/<int:id>', api_undone, name="api_undone"),
 	path('delete/<int:id>', api_delete, name="api_delete"),
 
 	# API (api/ prefix)
+	path('api/add', api_add, name="api_add_2"),
 	path('api/done/<int:id>', api_done, name="api_done_2"),
 	path('api/undone/<int:id>', api_undone, name="api_undone_2"),
 	path('api/delete/<int:id>', api_delete, name="api_delete_2"),

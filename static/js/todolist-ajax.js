@@ -6,32 +6,14 @@ const itemsTemplate = document.querySelector('#template-items').content
 const checkboxYesTemplate = document.querySelector('#template-item-done').content
 const checkboxNoTemplate = document.querySelector('#template-item-undone').content
 
-const deleteItem = async id => {
-	// console.log("Removing " + id + "...")
-	const fetchInit = {
-		method: "DELETE",
-		headers: {
-			'X-CSRFToken': window.CSRF_TOKEN
-		}
-	}
-	await fetch(`delete/${id}`, fetchInit)
-}
-
-const changeStatusItem = async (id, status) => {
-	// console.log("Changing " + id + "...")
-	const fetchInit = {
-		method: "POST",
-		headers: {
-			'X-CSRFToken': window.CSRF_TOKEN
-		}
-	}
-	if (status) await fetch(`done/${id}`, fetchInit)
-	else await fetch(`undone/${id}`, fetchInit)
-}
-
-const loadTodolist = async () => {
+const reloadTodolist = async () => {
 	const request = await fetch('json')
 	const response = await request.json()
+	loadTodolist(response)
+}
+
+const loadTodolist = response => {
+	console.log(response)
 	if (response) {
 
 		pageStatusEl.textContent = `Ditemukan ${response.length} task.`
@@ -44,8 +26,8 @@ const loadTodolist = async () => {
 			itemEl.querySelector(".item-description").textContent = item.fields.description
 
 			itemEl.querySelector(".item-delete").addEventListener('click', async event => {
-				await deleteItem(item.pk)
-				await loadTodolist()
+				const new_response = await deleteItem(item.pk)
+				await loadTodolist(await new_response.json())
 			})
 
 			const checkboxWrapperEl = itemEl.querySelector('.item-checkbox-wrapper')
@@ -54,8 +36,8 @@ const loadTodolist = async () => {
 			checkboxWrapperEl.appendChild(checkboxEl)
 			
 			checkboxEl.addEventListener('click', async event => {
-				await changeStatusItem(item.pk, !item.fields.is_finished)
-				await loadTodolist()
+				const new_response = await changeStatusItem(item.pk, !item.fields.is_finished)
+				await loadTodolist(await new_response.json())
 			})
 
 			itemsEl.appendChild(itemEl)
@@ -66,33 +48,71 @@ const loadTodolist = async () => {
 		wrapperEl.innerHTML = ""
 		wrapperEl.appendChild(noneTemplate.cloneNode(true))
 	}
-
 }
 
-// const formEl = document.querySelector("#addForm")
-// const submitEl = document.querySelector("#addModalSubmit")
-// formEl.addEventListener("submit", async event => {
-// 	event.preventDefault()
-// 	submitEl.disabled = true
-// 	const data = {
-// 		nama_barang: document.querySelector("#namaBarangInput").value,
-// 		harga_barang: document.querySelector("#hargaBarangInput").value,
-// 		deskripsi: document.querySelector("#deskripsiInput").value
-// 	}
-// 	await fetch("submit", {
-// 		method: "POST",
-// 		headers: {
-// 			'Content-Type': 'application/json',
-// 			'X-CSRFToken': window.CSRF_TOKEN
-// 		},
-// 		body: JSON.stringify(data)
-// 	})
-// 	loadTodolist()
-// 	submitEl.disabled = false
-// 	submitEl.textContent = "✅"
-// 	setTimeout(() => {
-// 		submitEl.textContent = "Tambah"
-// 	}, 1000)
-// })
+const deleteItem = async id => {
+	// console.log("Removing " + id + "...")
+	const fetchInit = {
+		method: "DELETE",
+		headers: {
+			'X-CSRFToken': window.CSRF_TOKEN
+		}
+	}
 
-loadTodolist()
+	return await fetch(`delete/${id}`, fetchInit)
+}
+
+const changeStatusItem = async (id, status) => {
+	// console.log("Changing " + id + "...")
+	const fetchInit = {
+		method: "POST",
+		headers: {
+			'X-CSRFToken': window.CSRF_TOKEN
+		}
+	}
+	
+	if (status) return await fetch(`done/${id}`, fetchInit)
+	else return await fetch(`undone/${id}`, fetchInit)
+}
+
+const formEl = document.querySelector("#add-form")
+formEl.addEventListener("submit", async event => {
+	event.preventDefault()
+	const formData = Object.fromEntries(new FormData(event.target))
+	const request = await fetch(`add`, {
+		method: "POST",
+		headers: {
+			'X-CSRFToken': window.CSRF_TOKEN,
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(formData)
+	})
+	await loadTodolist(await request.json())
+	// submitEl.disabled = true
+	// submitEl.disabled = false
+	// submitEl.textContent = "✅"
+	// setTimeout(() => {
+	// 	submitEl.textContent = "Tambah"
+	// }, 1000)
+})
+
+const openModalEl = document.querySelector("#add-open-modal")
+openModalEl.addEventListener("click", event => {
+	modalEl.classList.remove("hidden")
+	setTimeout(() => {
+		modalEl.classList.remove("opacity-0")
+	}, 0)
+	// modalEl.classList.remove("opacity-0")
+})
+
+const modalEl = document.querySelector("#add-modal")
+modalEl.addEventListener("click", event => {
+	if (event.target.id !== "add-modal") return
+	setTimeout(() => {
+		modalEl.classList.add("hidden")
+	}, 150)
+	modalEl.classList.add("opacity-0")
+})
+
+
+reloadTodolist()
