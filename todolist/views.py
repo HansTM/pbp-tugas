@@ -126,9 +126,9 @@ def show_todolist_json(request):
 
 	return HttpResponse(serializers.serialize("json", data), content_type="application/json")
 
+@login_required(login_url='/todolist/login')
 def show_todolist_ajax(request):	
 	return render(request, "todolist-ajax.html", {})
-
 
 def api_done(request, id):
 	if not request.user.is_authenticated:
@@ -138,7 +138,7 @@ def api_done(request, id):
 	if not id: 
 		return apires_bad_request()
 	
-	tasks = Task.objects.filter(pk=id)
+	tasks = Task.objects.filter(pk=id, user=request.user)
 	if len(tasks) != 1:
 		return apires_bad_request()
 	
@@ -156,7 +156,7 @@ def api_undone(request, id):
 	if not id: 
 		return apires_bad_request()
 	
-	tasks = Task.objects.filter(pk=id)
+	tasks = Task.objects.filter(pk=id, user=request.user)
 	if len(tasks) != 1:
 		return apires_bad_request()
 	
@@ -174,7 +174,7 @@ def api_delete(request, id):
 	if not id: 
 		return apires_bad_request()
 	
-	tasks = Task.objects.filter(pk=id)
+	tasks = Task.objects.filter(pk=id, user=request.user)
 	if len(tasks) != 1:
 		return apires_bad_request()
 	
