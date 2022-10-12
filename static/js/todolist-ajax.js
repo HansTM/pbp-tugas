@@ -5,6 +5,10 @@ const noneTemplate = document.querySelector('#template-none').content
 const itemsTemplate = document.querySelector('#template-items').content
 const checkboxYesTemplate = document.querySelector('#template-item-done').content
 const checkboxNoTemplate = document.querySelector('#template-item-undone').content
+const addModalEl = document.querySelector("#add-modal")
+const addFormEl = addModalEl.querySelector("#add-form")
+const addFormSubmitEl = addModalEl.querySelector("button[type=submit]")
+const addOpenModalNavEl = document.querySelector("#add-open-modal-nav")
 
 const reloadTodolist = async () => {
 	const request = await fetch('json')
@@ -25,6 +29,7 @@ const loadTodolist = response => {
 			itemEl.dataset.id = item.pk
 			itemEl.querySelector(".item-title").textContent = item.fields.title
 			itemEl.querySelector(".item-description").textContent = item.fields.description
+			itemEl.querySelector(".item-date").textContent = item.fields.date
 
 			itemEl.querySelector(".item-delete").addEventListener('click', async event => {
 				const newResponse = await deleteItem(item.pk)
@@ -80,12 +85,10 @@ const changeStatusItem = async (id, status) => {
 	else return await fetch(`undone/${id}`, fetchInit)
 }
 
-const formEl = document.querySelector("#add-form")
-const formSubmitEl = formEl.querySelector("button[type=submit]")
-formEl.addEventListener("submit", async event => {
+addFormEl.addEventListener("submit", async event => {
 	event.preventDefault()
 	const formData = Object.fromEntries(new FormData(event.target))
-	formSubmitEl.disabled = true
+	addFormSubmitEl.disabled = true
 	const request = await fetch('add', {
 		method: "POST",
 		headers: {
@@ -95,38 +98,30 @@ formEl.addEventListener("submit", async event => {
 		body: JSON.stringify(formData)
 	})
 	await loadTodolist(await request.json())
-	formSubmitEl.disabled = false
+	addFormSubmitEl.disabled = false
 	closeModal()
-	// submitEl.disabled = true
-	// submitEl.disabled = false
-	// submitEl.textContent = "✅"
-	// setTimeout(() => {
-	// 	submitEl.textContent = "Tambah"
-	// }, 1000)
 })
 
 const openModal = () => {
-	formSubmitEl.disabled = false
-	modalEl.classList.remove("hidden")
+	addFormSubmitEl.disabled = false
+	addModalEl.classList.remove("hidden")
 	setTimeout(() => {
-		modalEl.classList.remove("opacity-0")
+		addModalEl.classList.remove("opacity-0")
 	}, 0)
 }
 
 const closeModal = () => {
 	setTimeout(() => {
-		modalEl.classList.add("hidden")
+		addModalEl.classList.add("hidden")
 	}, 150)
-	modalEl.classList.add("opacity-0")
+	addModalEl.classList.add("opacity-0")
 }
 
-const openModalNavEl = document.querySelector("#add-open-modal")
-openModalNavEl.addEventListener("click", event => {
+addOpenModalNavEl.addEventListener("click", event => {
 	openModal()
 })
 
-const modalEl = document.querySelector("#add-modal")
-modalEl.addEventListener("click", event => {
+addModalEl.addEventListener("click", event => {
 	if (event.target.id !== "add-modal") return
 	closeModal()
 })
