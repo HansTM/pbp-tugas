@@ -13,10 +13,11 @@ const reloadTodolist = async () => {
 }
 
 const loadTodolist = response => {
-	console.log(response)
-	if (response) {
+	// console.log(response)
+	pageStatusEl.textContent = `Ditemukan ${response.length} task.`
 
-		pageStatusEl.textContent = `Ditemukan ${response.length} task.`
+	if (response.length) {
+
 		itemsEl = itemsTemplate.cloneNode(true).firstElementChild
 
 		response.forEach(item => {
@@ -26,8 +27,8 @@ const loadTodolist = response => {
 			itemEl.querySelector(".item-description").textContent = item.fields.description
 
 			itemEl.querySelector(".item-delete").addEventListener('click', async event => {
-				const new_response = await deleteItem(item.pk)
-				await loadTodolist(await new_response.json())
+				const newResponse = await deleteItem(item.pk)
+				await loadTodolist(await newResponse.json())
 			})
 
 			const checkboxWrapperEl = itemEl.querySelector('.item-checkbox-wrapper')
@@ -46,7 +47,11 @@ const loadTodolist = response => {
 		wrapperEl.appendChild(itemsEl)
 	} else {
 		wrapperEl.innerHTML = ""
-		wrapperEl.appendChild(noneTemplate.cloneNode(true))
+		const noneCardEl = noneTemplate.cloneNode(true).firstElementChild
+		noneCardEl.querySelector("button").addEventListener("click", event => {
+			openModal()
+		})
+		wrapperEl.appendChild(noneCardEl)
 	}
 }
 
@@ -76,10 +81,12 @@ const changeStatusItem = async (id, status) => {
 }
 
 const formEl = document.querySelector("#add-form")
+const formSubmitEl = formEl.querySelector("button[type=submit]")
 formEl.addEventListener("submit", async event => {
 	event.preventDefault()
 	const formData = Object.fromEntries(new FormData(event.target))
-	const request = await fetch(`add`, {
+	formSubmitEl.disabled = true
+	const request = await fetch('add', {
 		method: "POST",
 		headers: {
 			'X-CSRFToken': window.CSRF_TOKEN,
@@ -88,6 +95,7 @@ formEl.addEventListener("submit", async event => {
 		body: JSON.stringify(formData)
 	})
 	await loadTodolist(await request.json())
+	formSubmitEl.disabled = false
 	closeModal()
 	// submitEl.disabled = true
 	// submitEl.disabled = false
@@ -98,6 +106,7 @@ formEl.addEventListener("submit", async event => {
 })
 
 const openModal = () => {
+	formSubmitEl.disabled = false
 	modalEl.classList.remove("hidden")
 	setTimeout(() => {
 		modalEl.classList.remove("opacity-0")
@@ -111,8 +120,8 @@ const closeModal = () => {
 	modalEl.classList.add("opacity-0")
 }
 
-const openModalEl = document.querySelector("#add-open-modal")
-openModalEl.addEventListener("click", event => {
+const openModalNavEl = document.querySelector("#add-open-modal")
+openModalNavEl.addEventListener("click", event => {
 	openModal()
 })
 
@@ -121,6 +130,5 @@ modalEl.addEventListener("click", event => {
 	if (event.target.id !== "add-modal") return
 	closeModal()
 })
-
 
 reloadTodolist()
