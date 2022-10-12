@@ -25,6 +25,8 @@ const loadTodolist = response => {
 
 	if (response.length) {
 
+		response.sort((a, b) => a.pk - b.pk)
+
 		itemsEl = itemsTemplate.cloneNode(true).firstElementChild
 
 		response.forEach(item => {
