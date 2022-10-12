@@ -10,6 +10,9 @@ const addFormEl = addModalEl.querySelector("#add-form")
 const addFormSubmitEl = addModalEl.querySelector("button[type=submit]")
 const addOpenModalNavEl = document.querySelector("#add-open-modal-nav")
 
+let dateLanguageId = "id"
+const dateOptions = { year: "numeric", month: "long", day: "numeric", timeZone: "UTC" }
+
 const reloadTodolist = async () => {
 	const request = await fetch('json')
 	const response = await request.json()
@@ -29,7 +32,7 @@ const loadTodolist = response => {
 			itemEl.dataset.id = item.pk
 			itemEl.querySelector(".item-title").textContent = item.fields.title
 			itemEl.querySelector(".item-description").textContent = item.fields.description
-			itemEl.querySelector(".item-date").textContent = item.fields.date
+			itemEl.querySelector(".item-date").textContent = new Date(item.fields.date).toLocaleDateString(dateLanguageId, dateOptions)
 
 			itemEl.querySelector(".item-delete").addEventListener('click', async event => {
 				const newResponse = await deleteItem(item.pk)
