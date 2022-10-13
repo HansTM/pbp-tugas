@@ -63,7 +63,7 @@ addOpenModalNavEl.addEventListener("click", event => {
 
 - Jelaskan penerapan _asynchronous programming_ pada AJAX.
 
-Kita tahu bahwa terdapat beberapa kasus ketika program membutuhkan waktu untuk memproses suatu bagian kode kita, salah satunya untuk mendapatkan data dengan menggunakan AJAX. Kita jugatahu bahwa meminta data dari web tidak secepat perhitungan-perhitungan yang dapat kita lakukan di komputer kita, lantaran pasti ada suatu jeda pada *client* dengan *server*. Bisa saja sang *engine* menghentikan programnya sembari menunggu *request* AJAX-nya selesai, namun ini dapat menganggu, apalagi jika permintaaannya membutuhkan waktu yang lebih lama. 
+Kita tahu bahwa terdapat beberapa kasus ketika program membutuhkan waktu untuk memproses suatu bagian kode kita, salah satunya untuk mendapatkan data dengan menggunakan AJAX (ingat, A pertama dalam AJAX adalah Asynchronous). Kita juga tahu bahwa meminta data dari web tidak secepat perhitungan-perhitungan yang dapat kita lakukan di komputer kita, lantaran pasti ada suatu jeda pada *client* dengan *server*. Bisa saja sang *engine* menghentikan programnya sembari menunggu *request* AJAX-nya selesai, namun ini dapat menganggu, apalagi jika permintaaannya membutuhkan waktu yang lebih lama. 
 
 Dengan begitu, di JavaScript, paradigma *asynchronous programming* dapat digunakan. Pada JavaScript, biasanya akan ada sebuah *function* yang diberikan kepada suatu bagian kode untuk dijalankan ketika semuanya selesai. *Function* ini biasa disebut dengan *callback* (*function*). 
 
@@ -76,9 +76,9 @@ $.getJSON("test.json", data => {
 })
 ```
 
-Terdapat juga cara lain untuk meng-*handle* bagian-bagian kode yang perlu ditunggu ini, dengan [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Prinsipnya hal ini sama dengan cara sebelumnya, namun Promise telah terstandardisasi, yang memudahkan kita untuk membuat *callback* yang dibutuhkan. 
+Terdapat juga cara lain untuk meng-*handle* bagian-bagian kode yang perlu ditunggu ini, dengan [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). Prinsipnya hal ini sama dengan cara sebelumnya, namun Promise telah terstandardisasi, yang memudahkan kita untuk membuat *callback* yang dibutuhkan.
 
-Contohnya, saat [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) digunakan, API tersebut akan mengeluarkan sebuah Promise yang dapat kita berikan *callback* yang diperlukan.
+Contohnya, saat [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) digunakan, API tersebut akan mengeluarkan sebuah Promise yang dapat kita berikan *callback* yang diperlukan dengan menggunakan `.then()`.
 
 ```js
 fetch("test.json")
@@ -91,6 +91,10 @@ fetch("test.json")
     // Lakukan hal lain dengan datanya...
   })
 ```
+
+Selain `.then()`, terdapat juga `.catch()` yang dapat juga diberikan jika Promise tersebut gagal. Fungsi `.then()` dan `.catch()` ini berlaku pada segala sesuatu yang menggunakan Promise, bukan hanya Fetch API.
+
+Perlu diingat bahwa sama paradigma ini tidak hanya sebatas dalam penggunaan AJAX. Akan ada kasus-kasus lain yang membutuhkan waktu yang tidak singkat, dan juga dapat dihandle dengan paradigma ini.
 
 - Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas.
 
