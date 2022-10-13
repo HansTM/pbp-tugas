@@ -22,14 +22,14 @@ Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/
   - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/mywatchlist
 - Tugas 4: Pengimplementasian Form dan Autentikasi Menggunakan Django
   - Soal: [tugas/tugas-4](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-4)
-  - Kode sumber: [todolist/](todolist/)
-  - README.md: [todolist/README.tugas-4.md](todolist/README.tugas-4.md)
-  - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/todolist
+  - Kode sumber: [todolist/](todolist/) ([@tugas-4](https://github.com/HansTM/pbp-tugas/tree/tugas-4/todolist))
+  - README.md: [todolist/README.tugas-4.md](todolist/README.tugas-4.md) ([todolist/README.md@tugas-4](https://github.com/HansTM/pbp-tugas/blob/tugas-4/todolist/README.md))
+  - Aplikasi Heroku: ~~https://hanstm-pbp-tugas.herokuapp.com/todolist~~
 - Tugas 5: Web Design Using HTML, CSS, and CSS Framework
   - Soal: [tugas/tugas-5](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-5)
-  - Kode sumber: [todolist/](todolist/)
-  - README.md: [todolist/README.tugas-5.md](todolist/README.tugas-5.md)
-  - Aplikasi Heroku: https://hanstm-pbp-tugas.herokuapp.com/todolist
+  - Kode sumber: [todolist/](todolist/) ([@tugas-5](https://github.com/HansTM/pbp-tugas/tree/tugas-5/todolist))
+  - README.md: [todolist/README.tugas-5.md](todolist/README.tugas-5.md) ([todolist/README.md@tugas-5](https://github.com/HansTM/pbp-tugas/blob/tugas-5/todolist/README.md))
+  - Aplikasi Heroku: ~~https://hanstm-pbp-tugas.herokuapp.com/todolist~~
 - Tugas 6: JavaScript dan AJAX
   - Soal: [tugas/tugas-6](https://pbp-fasilkom-ui.github.io/ganjil-2023/assignments/tugas/tugas-6)
   - Kode sumber: [todolist/](todolist/)

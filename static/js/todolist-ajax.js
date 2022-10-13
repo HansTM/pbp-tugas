@@ -7,7 +7,8 @@ const checkboxYesTemplate = document.querySelector('#template-item-done').conten
 const checkboxNoTemplate = document.querySelector('#template-item-undone').content
 const addModalEl = document.querySelector("#add-modal")
 const addFormEl = addModalEl.querySelector("#add-form")
-const addFormSubmitEl = addModalEl.querySelector("button[type=submit]")
+const addSubmitEl = addModalEl.querySelector("#add-submit")
+const addCloseEl = addModalEl.querySelector("#add-close")
 const addOpenModalNavEl = document.querySelector("#add-open-modal-nav")
 
 let dateLanguageId = "id"
@@ -47,6 +48,7 @@ const loadTodolist = response => {
 			checkboxWrapperEl.appendChild(checkboxEl)
 			
 			checkboxEl.addEventListener('click', async event => {
+				pageStatusEl.textContent = `Memperbarui task...`
 				const new_response = await changeStatusItem(item.pk, !item.fields.is_finished)
 				await loadTodolist(await new_response.json())
 			})
@@ -59,7 +61,7 @@ const loadTodolist = response => {
 		wrapperEl.innerHTML = ""
 		const noneCardEl = noneTemplate.cloneNode(true).firstElementChild
 		noneCardEl.querySelector("button").addEventListener("click", event => {
-			openModal()
+			openAddModal()
 		})
 		wrapperEl.appendChild(noneCardEl)
 	}
@@ -92,8 +94,9 @@ const changeStatusItem = async (id, status) => {
 
 addFormEl.addEventListener("submit", async event => {
 	event.preventDefault()
+	pageStatusEl.textContent = `Menambah task...`
 	const formData = Object.fromEntries(new FormData(event.target))
-	addFormSubmitEl.disabled = true
+	addSubmitEl.disabled = true
 	const request = await fetch('add', {
 		method: "POST",
 		headers: {
@@ -103,19 +106,19 @@ addFormEl.addEventListener("submit", async event => {
 		body: JSON.stringify(formData)
 	})
 	await loadTodolist(await request.json())
-	addFormSubmitEl.disabled = false
-	closeModal()
+	addSubmitEl.disabled = false
+	closeAddModal()
 })
 
-const openModal = () => {
-	addFormSubmitEl.disabled = false
+const openAddModal = () => {
+	addSubmitEl.disabled = false
 	addModalEl.classList.remove("hidden")
 	setTimeout(() => {
 		addModalEl.classList.remove("opacity-0")
 	}, 0)
 }
 
-const closeModal = () => {
+const closeAddModal = () => {
 	setTimeout(() => {
 		addModalEl.classList.add("hidden")
 	}, 150)
@@ -123,12 +126,16 @@ const closeModal = () => {
 }
 
 addOpenModalNavEl.addEventListener("click", event => {
-	openModal()
+	openAddModal()
 })
 
 addModalEl.addEventListener("click", event => {
 	if (event.target.id !== "add-modal") return
-	closeModal()
+	closeAddModal()
+})
+
+addCloseEl.addEventListener("click", event => {
+	closeAddModal()
 })
 
 reloadTodolist()
